@@ -17,15 +17,21 @@ async function initDB() {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
+    port: Number(process.env.DB_PORT) || 3306,
     charset: 'UTF8_GENERAL_CI',
   });
-  await conn.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\` CHARACTER SET utf8`);
+  try {
+    await conn.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\` CHARACTER SET utf8`);
+  } catch (e) {
+    console.log('Baza allaqachon mavjud, davom etamiz');
+  }
   await conn.end();
 
   pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
+    port: Number(process.env.DB_PORT) || 3306,
     database: process.env.DB_NAME,
     charset: 'UTF8_GENERAL_CI',
     dateStrings: true,
