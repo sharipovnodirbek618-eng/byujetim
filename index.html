@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Byudjetim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+  <!-- Kirish / Ro'yxatdan o'tish -->
+  <div id="auth" class="auth hidden">
+    <div class="auth-box">
+      <div class="logo"><i data-lucide="wallet"></i><span>Byudjetim</span></div>
+      <p class="muted center">Har bir so'm hisobda</p>
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Kirish</button>
+        <button class="tab" data-tab="register">Ro'yxatdan o'tish</button>
+      </div>
+
+      <form id="loginForm">
+        <label class="f">Email<input name="email" type="email" required autocomplete="email"></label>
+        <label class="f">Parol<input name="password" type="password" required autocomplete="current-password"></label>
+        <div class="err" id="loginErr"></div>
+        <button class="btn full" type="submit">Kirish</button>
+      </form>
+
+      <form id="registerForm" class="hidden">
+        <label class="f">Ism<input name="name" required maxlength="100" autocomplete="name"></label>
+        <label class="f">Email<input name="email" type="email" required autocomplete="email"></label>
+        <label class="f">Parol (kamida 6 belgi)<input name="password" type="password" required minlength="6" autocomplete="new-password"></label>
+        <div class="err" id="registerErr"></div>
+        <button class="btn full" type="submit">Ro'yxatdan o'tish</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Asosiy ilova -->
+  <div id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="logo"><i data-lucide="wallet"></i><span>Byudjetim</span></div>
+      <nav class="nav">
+        <a href="#" data-view="dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a>
+        <a href="#" data-view="transactions"><i data-lucide="arrow-left-right"></i><span>Tranzaksiya</span></a>
+        <a href="#" data-view="budget"><i data-lucide="pie-chart"></i><span>Byudjet</span></a>
+        <a href="#" data-view="goals"><i data-lucide="target"></i><span>Maqsadlar</span></a>
+        <a href="#" data-view="reports"><i data-lucide="bar-chart-3"></i><span>Hisobotlar</span></a>
+        <a href="#" data-view="settings"><i data-lucide="settings"></i><span>Sozlamalar</span></a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1 id="pageTitle">Dashboard</h1>
+          <p class="muted" id="pageSub">Har bir so'm hisobda</p>
+        </div>
+        <div class="actions">
+          <button id="themeBtn" class="icon-btn" aria-label="Tema"><i data-lucide="moon"></i></button>
+          <button class="btn" data-act="add-tx"><i data-lucide="plus"></i><span class="hide-m">Qo'shish</span></button>
+          <button id="logoutBtn" class="icon-btn" aria-label="Chiqish"><i data-lucide="log-out"></i></button>
+        </div>
+      </header>
+      <div id="view"></div>
+    </main>
+  </div>
+
+  <div id="modal" class="modal"></div>
+  <div id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
